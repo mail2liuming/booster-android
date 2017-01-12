@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Investor Type">
+
+            <menu>
+                <item
+                    android:id="@+id/nav_defensive"
+                    android:title="  Defensive" />
+                <item
+                    android:id="@+id/nav_conservative"
+                    android:title="  Conservative" />
+                <item
+                    android:id="@+id/nav_balanced"
+                    android:title="  Balanced" />
+                <item
+                    android:id="@+id/nav_balanced_growth"
+                    android:title="  Balanced Growth" />
+                <item
+                    android:id="@+id/nav_growth"
+                    android:title="  Growth" />
+                <item
+                    android:id="@+id/nav_aggressive_growth"
+                    android:title="  Aggressive Growth" />
+            </menu>
+        </item>
+    </group>
+    <group>
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Questionare" />
+        <item
+            android:id="@+id/nav_send"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Submit" />
+
+    </group>
+
+</menu>
