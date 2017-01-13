@@ -3,4 +3,13 @@
     <color name="colorPrimary">#007fc4</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#9ed07c</color>
+
+    <color name="pie_cash">#2D8FC7</color>
+    <color name="pie_international_fixed">#9BBDDF</color>
+    <color name="pie_international_equal">#D1E6BE</color>
+    <color name="pie_nz_fixed">#629FCF</color>
+    <color name="pie_listed">#E1EFD6</color>
+    <color name="pie_au">#B7D999</color>
+
+    <!--<color-->
 </resources>

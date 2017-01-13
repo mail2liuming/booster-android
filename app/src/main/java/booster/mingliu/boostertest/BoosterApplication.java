@@ -2,6 +2,8 @@ package booster.mingliu.boostertest;
 
 import android.app.Application;
 
+import booster.mingliu.boostertest.models.FundTypeModelManager;
+import booster.mingliu.boostertest.models.QuestionModelManager;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
@@ -11,7 +13,7 @@ public class BoosterApplication extends Application {
 
     private static BoosterApplication sInstance;
 
-    public static BoosterApplication get(){
+    public static BoosterApplication get() {
         return sInstance;
     }
 
@@ -20,10 +22,12 @@ public class BoosterApplication extends Application {
         super.onCreate();
         sInstance = this;
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/CircularStd-Book.ttf")
-                .setFontAttrId(R.attr.fontPath)
-                .build()
+                        .setDefaultFontPath("fonts/CircularStd-Book.ttf")
+                        .setFontAttrId(R.attr.fontPath)
+                        .build()
         );
+        QuestionModelManager.getsInstance().load();
+        FundTypeModelManager.getsInstance().load();
     }
 }
 

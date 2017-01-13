@@ -9,6 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@android:color/white"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="booster.mingliu.boostertest.MainActivity"
     tools:showIn="@layout/app_bar_main">
@@ -16,6 +17,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:id="@+id/main_content"
-        android:text="Hello World!" />
+        android:text="@string/main_description"
+        style="@style/AppTheme.Widget.TextView"/>
 </FrameLayout>

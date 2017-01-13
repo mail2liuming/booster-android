@@ -7,15 +7,30 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import booster.mingliu.boostertest.basic.BasicActivity;
 import booster.mingliu.boostertest.common.utils.FragmentManagerUtil;
+import booster.mingliu.boostertest.common.utils.PreferenceUtils;
+import booster.mingliu.boostertest.events.SubmitScoreEvent;
 import booster.mingliu.boostertest.fragments.FundTypesFragment;
 import booster.mingliu.boostertest.fragments.QuestionFragment;
+import booster.mingliu.boostertest.fragments.SubmitFragment;
 import booster.mingliu.boostertest.models.QuestionModelManager;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends BasicActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    @BindView(R.id.nav_view)
+    NavigationView mNavigationView;
+    @BindView(R.id.main_content)
+    TextView mMainContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +46,46 @@ public class MainActivity extends BasicActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        ButterKnife.bind(this);
+        mNavigationView.setNavigationItemSelectedListener(this);
+
+        updateSubmitMenu();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(SubmitScoreEvent event){
+        updateSubmitMenu();
+    }
+
+    private void updateSubmitMenu(){
+        int status = PreferenceUtils.getInt(this, PreferenceUtils.KEY_SUBMIT_STATUS,QuestionModelManager.SUBMIT_STATUS_DONE);
+        MenuItem menuItem = mNavigationView.getMenu().findItem(R.id.nav_send);
+        if(QuestionModelManager.SUBMIT_STATUS_NONE==status){
+            menuItem.setEnabled(false);
+            menuItem.setTitle(R.string.submit);
+        }
+        else if(QuestionModelManager.SUBMIT_STATUS_ONGING==status){
+            menuItem.setEnabled(true);
+            menuItem.setTitle(R.string.submit);
+        }else if(QuestionModelManager.SUBMIT_STATUS_DONE == status){
+            menuItem.setEnabled(false);
+            menuItem.setTitle(R.string.submitted);
+
+
+            mMainContent.setText(getString(R.string.submit_message));
+        }
     }
 
     @Override
@@ -66,9 +119,10 @@ public class MainActivity extends BasicActivity
         } else if (id == R.id.nav_share) {
             this.getSupportFragmentManager().popBackStack();
             QuestionModelManager.getsInstance().reset();
-            FragmentManagerUtil.addFragment(this, QuestionFragment.newInstance(),"", FragmentManagerUtil.Animation.NONE);
+            FragmentManagerUtil.addFragmentAndAddToBackStack(this, QuestionFragment.newInstance(), "", FragmentManagerUtil.Animation.NONE);
         } else if (id == R.id.nav_send) {
-
+            this.getSupportFragmentManager().popBackStack();
+            FragmentManagerUtil.addFragmentAndAddToBackStack(this, SubmitFragment.newInstance(), "", FragmentManagerUtil.Animation.NONE);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -78,6 +132,6 @@ public class MainActivity extends BasicActivity
 
     private void showInvestorType(int type){
         this.getSupportFragmentManager().popBackStack();
-        FragmentManagerUtil.addFragment(this, FundTypesFragment.newInstance(type),FundTypesFragment.TAG, FragmentManagerUtil.Animation.NONE);
+        FragmentManagerUtil.addFragmentAndAddToBackStack(this, FundTypesFragment.newInstance(type), FundTypesFragment.TAG, FragmentManagerUtil.Animation.NONE);
     }
 }

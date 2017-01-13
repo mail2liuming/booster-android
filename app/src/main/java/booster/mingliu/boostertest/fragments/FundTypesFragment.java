@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,9 +51,10 @@ public class FundTypesFragment extends BasicFragment {
     private void setupViewPager(View containerView) {
         // Get the ViewPager and set it's PagerAdapter so that it can display items
         ViewPager viewPager = (ViewPager) containerView.findViewById(R.id.viewpager);
-        ViewPagerAdapter adapter = new ViewPagerAdapter(this.getFragmentManager());
+        ViewPagerAdapter adapter = new ViewPagerAdapter(this.getChildFragmentManager());
         viewPager.setAdapter(adapter);
 
+        Log.d("FundTypesFragment", "" + mEntryType);
         if (mEntryType > 0) {
             viewPager.setCurrentItem(mEntryType - 1);
         }

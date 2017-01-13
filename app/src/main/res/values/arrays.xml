@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--questionares-->
+
+    <string-array name="questions">
+        <item>When do you plan to make a signiicant lump sum withdrawal from your portfolio, for example, for the purchase of a irst home
+or for retirement needs? (From age 65 at the earliest)</item>
+        <item>Which of the following questions best describes your thoughts about risks and returns?</item>
+        <item>Protecting my investment portfolio from a fall in value at any time is more important to me than achieving high returns?</item>
+        <item>Consider you have an investment balance of at least $20,000 or more. If after a short period of time (less than 1 year) your
+balance has dropped in value, which statement relects best how you would feel about this?</item>
+        <item>How often would you tend to worry about your investment returns?</item>
+    </string-array>
+
+    <string-array name="options_1">
+        <item>Within 2 years – you need a DEFENSIVE TYPE fund</item>
+        <item>In 2 to 5 years – you need a CONSERVATIVE TYPE fund  </item>
+        <item>In 6 to 10 years – continue to next question</item>
+        <item>In 11 to 20 years – continue to next question</item>
+        <item>More than 20 years – continue to next question </item>
+    </string-array>
+
+    <string-array name="options_2">
+        <item>I want to minimise my risk and am therefore willing to
+accept low returns</item>
+        <item>I am willing to take a moderate amount of risk to
+generate low to medium returns </item>
+        <item>I am willing to take a reasonable amount of risk to
+provide a more medium return</item>
+        <item>In order to receive higher returns, I am willing to take a
+relatively high amount of risk</item>
+        <item>I want to maximise my returns and am willing to accept a
+high level of risk</item>
+    </string-array>
+
+    <string-array name="options_3">
+        <item>Strongly Agree</item>
+        <item>Agree </item>
+        <item>Neither agree or disagree</item>
+        <item>Disagree</item>
+        <item>Strongly Disagree</item>
+    </string-array>
+    <string-array name="options_4">
+        <item>I would be unhappy with any drop in value </item>
+        <item>I would be OK with a drop in value of no more than 5%  </item>
+        <item>I would be OK with a drop in value of no more than 10%</item>
+        <item>I would be OK with a drop in value of up to 15%</item>
+        <item>I would be OK with a drop in value of up to 20%</item>
+    </string-array>
+
+    <string-array name="options_5">
+        <item>Daily</item>
+        <item>Monthly </item>
+        <item>Quarterly</item>
+        <item>Annually</item>
+        <item>Never or only occasionally over the longer term</item>
+    </string-array>
+
+    <string-array name="investor_type">
+        <item>Defensive</item>
+        <item>Conservative </item>
+        <item>Balanced</item>
+        <item>Balanced Growth</item>
+        <item>Growth</item>
+        <item>Aggressive Growth</item>
+    </string-array>
+
+    <!--investor_type-->
+    <string-array name="fund_types">
+        <item>Capital Guaranteed Fund</item>
+        <item>Default Saver Fund</item>
+        <item>Balanced Fund</item>
+        <item>Balanced Growth Fund</item>
+        <item>High Growth Fund</item>
+        <item>High Growth Fund</item>
+    </string-array>
+
+    <string-array name="fund_types_object">
+        <item>&#183;The fund aims to provide relatively consistent returns, subject to a capital guarantee.\n&#183;It aims to achieve returns – after fees but before tax – of at least 1.5% per year above inflation over any 2-year period.\n&#183;Generally, there may be small movements up and down in the value of the fund.\n
+            &#183;The fund invests mainly in income assets, and includes only a small amount of growth assets.\n</item>
+        <item>&#183;The fund aims to provide relatively consistent but modest returns, with some capital gains over the long term.\n&#183;
+
+It aims to achieve achieve returns – after fees but before tax – of at least 2.0% per year above inflation over any 3-year period.\n&#183;
+
+Generally, there will be small movements up and down in the value of the fund, reflecting its temporary holding nature.\n&#183;
+        The fund invests mainly in income assets, but includes some growth assets.\n</item>
+        <item>&#183;The fund aims to provide relatively consistent returns, with some capital gains over the long-term.\n&#183;
+
+It aims to achieve returns – after fees but before tax – of at least 2.5% per year above inflation over any four year period.\n&#183;
+
+Generally, there will be some movements up and down in the value of the fund.\n&#183;
+        The fund invests mainly in income assets, but includes some growth assets.\n</item>
+        <item>&#183;The fund aims to provide an enhanced return over the long term through capital gains.\n&#183;
+
+It aims to achieve returns – after fees but before tax – of at least 3% per year above inflation over any 5-year period.\n&#183;
+
+There will be some movements up and down in the value of the fund.\n&#183;
+        The fund invests in a more balanced mix of income assets and growth assets.\n</item>
+        <item>&#183;The fund aims to provide long-term capital gains but to partially offset short-term movements up and down with some income assets.\n&#183;
+
+It aims to achieve returns – after fees but before tax –  of at least 4% per year above inflation over any 7-year period.\n&#183;
+
+There will be larger movements up and down in the value of the fund compared to the Balanced Fund.\n&#183;
+
+
+The fund invests mainly in growth assets, but includes some income assets.\n</item>
+        <item>&#183;The fund aims to maximise the potential for capital gains over the long term.\n&#183;
+
+It aims to achieve returns – after fees but before tax – of at least 5% per year above inflation over any 10-year period.\n&#183;
+
+There will be significant movements up and down in the value of the fund.\n&#183;
+        The fund invests predominantly in growth assets, with little or no allocation to income assets.\n</item>
+
+    </string-array>
+
+    <string-array name="pie_words_capital_fund">
+        <item>@string/pie_word_cash</item>
+        <item>@string/pie_word_international_equities</item>
+        <item>@string/pie_word_au_equities</item>
+        <item>@string/pie_word_international_fixed</item>
+        <item>@string/pie_word_nz_fixed</item>
+    </string-array>
+
+    <array name="pie_colors_capital_fund">
+        <item>@color/pie_cash</item>
+        <item>@color/pie_international_equal</item>
+        <item>@color/pie_au</item>
+        <item>@color/pie_international_fixed</item>
+        <item>@color/pie_nz_fixed</item>
+    </array>
+
+    <integer-array name="pie_percents_capital_fund">
+        <item>60</item>
+        <item>10</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+    </integer-array>
+
+    <integer-array name="pie_growth_capital_fund">
+        <item>15</item>
+        <item>85</item>
+    </integer-array>
+
+    <string-array name="pie_words_default_fund">
+        <item>@string/pie_word_cash</item>
+        <item>@string/pie_word_listed_property</item>
+        <item>@string/pie_word_international_equities</item>
+        <item>@string/pie_word_au_equities</item>
+        <item>@string/pie_word_international_fixed</item>
+        <item>@string/pie_word_nz_fixed</item>
+    </string-array>
+
+    <array name="pie_colors_default_fund">
+        <item>@color/pie_cash</item>
+        <item>@color/pie_listed</item>
+        <item>@color/pie_international_equal</item>
+        <item>@color/pie_au</item>
+        <item>@color/pie_international_fixed</item>
+        <item>@color/pie_nz_fixed</item>
+    </array>
+
+    <integer-array name="pie_percents_default_fund">
+        <item>20</item>
+        <item>2</item>
+        <item>11</item>
+        <item>7</item>
+        <item>25</item>
+        <item>35</item>
+    </integer-array>
+
+    <integer-array name="pie_growth_default_fund">
+        <item>20</item>
+        <item>80</item>
+    </integer-array>
+
+    <string-array name="pie_words_moderate_fund">
+        <item>@string/pie_word_cash</item>
+        <item>@string/pie_word_listed_property</item>
+        <item>@string/pie_word_international_equities</item>
+        <item>@string/pie_word_au_equities</item>
+        <item>@string/pie_word_international_fixed</item>
+        <item>@string/pie_word_nz_fixed</item>
+    </string-array>
+
+    <array name="pie_colors_moderate_fund">
+        <item>@color/pie_cash</item>
+        <item>@color/pie_listed</item>
+        <item>@color/pie_international_equal</item>
+        <item>@color/pie_au</item>
+        <item>@color/pie_international_fixed</item>
+        <item>@color/pie_nz_fixed</item>
+    </array>
+
+    <integer-array name="pie_percents_moderate_fund">
+        <item>15</item>
+        <item>4</item>
+        <item>19</item>
+        <item>12</item>
+        <item>20</item>
+        <item>30</item>
+    </integer-array>
+
+    <integer-array name="pie_growth_moderate_fund">
+        <item>35</item>
+        <item>65</item>
+    </integer-array>
+
+    <string-array name="pie_words_balance_fund">
+        <item>@string/pie_word_cash</item>
+        <item>@string/pie_word_listed_property</item>
+        <item>@string/pie_word_international_equities</item>
+        <item>@string/pie_word_au_equities</item>
+        <item>@string/pie_word_international_fixed</item>
+        <item>@string/pie_word_nz_fixed</item>
+    </string-array>
+
+    <array name="pie_colors_balance_fund">
+        <item>@color/pie_cash</item>
+        <item>@color/pie_listed</item>
+        <item>@color/pie_international_equal</item>
+        <item>@color/pie_au</item>
+        <item>@color/pie_international_fixed</item>
+        <item>@color/pie_nz_fixed</item>
+    </array>
+
+    <integer-array name="pie_percents_balance_fund">
+        <item>2</item>
+        <item>7</item>
+        <item>30</item>
+        <item>18</item>
+        <item>26</item>
+        <item>17</item>
+    </integer-array>
+
+    <integer-array name="pie_growth_balance_fund">
+        <item>55</item>
+        <item>45</item>
+    </integer-array>
+
+    <string-array name="pie_words_balance_growth_fund">
+        <item>@string/pie_word_cash</item>
+        <item>@string/pie_word_listed_property</item>
+        <item>@string/pie_word_international_equities</item>
+        <item>@string/pie_word_au_equities</item>
+        <item>@string/pie_word_international_fixed</item>
+        <item>@string/pie_word_nz_fixed</item>
+    </string-array>
+
+    <array name="pie_colors_balance_growth_fund">
+        <item>@color/pie_cash</item>
+        <item>@color/pie_listed</item>
+        <item>@color/pie_international_equal</item>
+        <item>@color/pie_au</item>
+        <item>@color/pie_international_fixed</item>
+        <item>@color/pie_nz_fixed</item>
+    </array>
+
+    <integer-array name="pie_percents_balance_growth_fund">
+        <item>2</item>
+        <item>9</item>
+        <item>41</item>
+        <item>25</item>
+        <item>14</item>
+        <item>9</item>
+    </integer-array>
+
+    <integer-array name="pie_growth_balance_growth_fund">
+        <item>75</item>
+        <item>25</item>
+    </integer-array>
+
+    <string-array name="pie_words_high_growth_fund">
+        <item>@string/pie_word_cash</item>
+        <item>@string/pie_word_listed_property</item>
+        <item>@string/pie_word_international_equities</item>
+        <item>@string/pie_word_au_equities</item>
+    </string-array>
+
+    <array name="pie_colors_high_growth_fund">
+        <item>@color/pie_cash</item>
+        <item>@color/pie_listed</item>
+        <item>@color/pie_international_equal</item>
+        <item>@color/pie_au</item>
+    </array>
+
+    <integer-array name="pie_percents_high_growth_fund">
+        <item>2</item>
+        <item>12</item>
+        <item>54</item>
+        <item>32</item>
+    </integer-array>
+
+    <integer-array name="pie_growth_high_growth_fund">
+        <item>98</item>
+        <item>2</item>
+    </integer-array>
+
+</resources>

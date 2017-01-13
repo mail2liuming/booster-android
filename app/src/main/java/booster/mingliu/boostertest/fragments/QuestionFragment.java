@@ -3,6 +3,7 @@ package booster.mingliu.boostertest.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatCheckBox;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +13,8 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
-
-import java.util.List;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import booster.mingliu.boostertest.R;
 import booster.mingliu.boostertest.basic.BasicActivity;
@@ -54,7 +55,13 @@ public class QuestionFragment extends BasicFragment {
 
         int curQuestion = QuestionModelManager.getsInstance().getCurQuestionIdx();
         mQuestionContentTV.setText(QuestionModelManager.getsInstance().getQuestion());
-        mQuestionList.setAdapter(new QuestionAdapter());
+        QuestionAdapter adapter = new QuestionAdapter();
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+//        llm.set
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        mQuestionList.setLayoutManager(llm);
+        mQuestionList.setAdapter(adapter);
+        mQuestionList.setNestedScrollingEnabled(false);
         mQuestionNextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +69,7 @@ public class QuestionFragment extends BasicFragment {
             }
         });
         updateNextBtn();
+        adapter.notifyDataSetChanged();
         return view;
     }
 
@@ -77,8 +85,10 @@ public class QuestionFragment extends BasicFragment {
         EventBus.getDefault().unregister(this);
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(QuestionCheckedEvent event) {
         updateNextBtn();
+        mQuestionList.getAdapter().notifyDataSetChanged();
     }
 
     private void updateNextBtn() {
@@ -91,11 +101,15 @@ public class QuestionFragment extends BasicFragment {
     }
 
     private void next() {
-        getFragmentManager().popBackStack();
-        if (QuestionModelManager.getsInstance().isLastQuestion()) {
-            FragmentManagerUtil.addFragment((BasicActivity)getActivity(), QuestionResultFragment.newInstance(), "", FragmentManagerUtil.Animation.NONE);
-        } else {
-            FragmentManagerUtil.addFragment((BasicActivity)getActivity(), QuestionFragment.newInstance(), "", FragmentManagerUtil.Animation.NONE);
+        int curOption = QuestionModelManager.getsInstance().getCurOption();
+        if (curOption >= 0) {
+            getFragmentManager().popBackStack();
+            QuestionModelManager.getsInstance().nextQuestion();
+            if (QuestionModelManager.getsInstance().isLastQuestionFinished()) {
+                FragmentManagerUtil.addFragmentAndAddToBackStack((BasicActivity) getActivity(), QuestionResultFragment.newInstance(), "", FragmentManagerUtil.Animation.NONE);
+            } else {
+                FragmentManagerUtil.addFragmentAndAddToBackStack((BasicActivity) getActivity(), QuestionFragment.newInstance(), "", FragmentManagerUtil.Animation.NONE);
+            }
         }
     }
 
@@ -109,10 +123,10 @@ public class QuestionFragment extends BasicFragment {
 
         @Override
         public void onBindViewHolder(QuestionVH holder, int position) {
-            List<String> options = QuestionModelManager.getsInstance().getOptions();
+            String[] options = QuestionModelManager.getsInstance().getOptions();
             int curOption = QuestionModelManager.getsInstance().getCurOption();
-            if (null != options && position >= 0 && position < options.size()) {
-                holder.mQuestionTV.setText(options.get(position));
+            if (null != options && position >= 0 && position < options.length) {
+                holder.mQuestionTV.setText(options[position]);
                 if (position == curOption) {
                     holder.mOptionCheckBox.setChecked(true);
                 } else {
@@ -123,7 +137,7 @@ public class QuestionFragment extends BasicFragment {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         QuestionModelManager.getsInstance().setCurOption(finalPos);
-                        notifyDataSetChanged();
+//                        notifyDataSetChanged();
                         EventBus.getDefault().post(new QuestionCheckedEvent());
                     }
                 });

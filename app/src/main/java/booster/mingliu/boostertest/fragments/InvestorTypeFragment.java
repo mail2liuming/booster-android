@@ -3,9 +3,11 @@ package booster.mingliu.boostertest.fragments;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
@@ -18,6 +20,7 @@ import java.util.List;
 
 import booster.mingliu.boostertest.R;
 import booster.mingliu.boostertest.basic.BasicFragment;
+import booster.mingliu.boostertest.models.FundTypeModelManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -30,55 +33,80 @@ public class InvestorTypeFragment extends BasicFragment {
     @BindView(R.id.piechart)
     PieChart mPieChart;
 
+    @BindView(R.id.piechart_title)
+    TextView mPieTitle;
+
+    @BindView(R.id.pie_description_text)
+    TextView mPieText;
+
+    private int mType = -1;
+
     public static InvestorTypeFragment newInstance(int type) {
 
         Bundle args = new Bundle();
-        args.putInt(INVESTOR_TYPE_TAG,type);
+        args.putInt(INVESTOR_TYPE_TAG, type);
         InvestorTypeFragment fragment = new InvestorTypeFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle args = getArguments();
+        if (null != args) {
+            mType = args.getInt(INVESTOR_TYPE_TAG, -1);
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_investortype,container,false);
+        View view = inflater.inflate(R.layout.fragment_investortype, container, false);
         ButterKnife.bind(this, view);
-//        mPieChart = (PieChart)view.findViewById(R.id.piechart);
-        setupPieChart();
+
+        Log.d("InvestorTypeFragment",""+mType);
+        if (mType >= 0) {
+            mPieTitle.setText(FundTypeModelManager.getsInstance().getFundTypeTitle(mType));
+            mPieText.setText(FundTypeModelManager.getsInstance().getFundTypeContent(mType));
+            setupPieChart();
+        }
         return view;
     }
 
-    private void setupPieChart(){
-        List<String> xValues = new ArrayList<String>();
-        List<PieEntry> yValues = new ArrayList<PieEntry>();
+    private void setupPieChart() {
+
+        List<PieEntry> values = new ArrayList<PieEntry>();
         List<Integer> colors = new ArrayList<Integer>();
 
-        xValues.add("new");
-        xValues.add("load");
-        xValues.add("old");
-        xValues.add("none");
+        String[] pieWords = FundTypeModelManager.getsInstance().getFundTypesWords(mType);
+        int[] pieColors = FundTypeModelManager.getsInstance().getFundTypesColors(mType);
+        int[] piePercents = FundTypeModelManager.getsInstance().getFundTypesPercents(mType);
 
-        yValues.add(new PieEntry(15, "new"));
-        yValues.add(new PieEntry(15, "load"));
-        yValues.add(new PieEntry(25, "old"));
-        yValues.add(new PieEntry(45, "none"));
+        for (int i = 0; i < pieWords.length; i++) {
+            values.add(new PieEntry(piePercents[i], pieWords[i]));
+            colors.add(pieColors[i]);
+        }
 
-        colors.add(Color.rgb(205, 205, 205));
-        colors.add(Color.rgb(114, 188, 223));
-        colors.add(Color.rgb(255, 123, 124));
-        colors.add(Color.rgb(57, 135, 200));
-
-        PieDataSet pieDataSet = new PieDataSet(yValues, "Quarterly Revenue 2014");
+        PieDataSet pieDataSet = new PieDataSet(values, getString(R.string.target_investment_mix));
         pieDataSet.setSliceSpace(0f);
+        pieDataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        pieDataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        pieDataSet.setValueLineVariableLength(true);
+
 
         pieDataSet.setColors(colors);
-        PieData pieData = new PieData( pieDataSet);
+        PieData pieData = new PieData(pieDataSet);
 
         pieData.setValueFormatter(new PercentFormatter());
         pieData.setValueTextSize(11f);
-        pieData.setValueTextColor(Color.WHITE);
+
+        pieData.setValueTextColors(colors);
+
         mPieChart.setData(pieData);
         mPieChart.setRotationEnabled(false);
+        mPieChart.setEntryLabelColor(Color.BLACK);
+        mPieChart.setEntryLabelTextSize(8f);
+        mPieChart.getDescription().setEnabled(false);
     }
 }

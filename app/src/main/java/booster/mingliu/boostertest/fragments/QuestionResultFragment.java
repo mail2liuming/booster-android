@@ -42,13 +42,13 @@ public class QuestionResultFragment extends BasicFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_question_result, container, false);
         ButterKnife.bind(this, view);
-        mScoreTV.setText(QuestionModelManager.getsInstance().getScore());
-        mTypeTV.setText("");
+        mScoreTV.setText(String.valueOf(QuestionModelManager.getsInstance().getScore()));
+        mTypeTV.setText(getContext().getResources().getString(R.string.investor_type_result, QuestionModelManager.getsInstance().getCurTypeString()));
         mShowBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getFragmentManager().popBackStack();
-                FragmentManagerUtil.addFragment((BasicActivity) getActivity(), FundTypesFragment.newInstance(QuestionModelManager.getsInstance().getCurType()), "", FragmentManagerUtil.Animation.NONE);
+                FragmentManagerUtil.addFragmentAndAddToBackStack((BasicActivity) getActivity(), FundTypesFragment.newInstance(QuestionModelManager.getsInstance().getCurType()), "", FragmentManagerUtil.Animation.NONE);
             }
         });
         return view;

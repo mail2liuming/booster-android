@@ -6,4 +6,29 @@
 
     <string name="action_settings">Settings</string>
     <string name="welcome">Welcome!</string>
+
+    <string name="investor_type_result">You are a %s investor.</string>
+
+    <string name="error_empty_field">Please enter the information.</string>
+    <string name="error_email_field">Please enter the correct email.</string>
+
+
+    <string name="pie_word_cash">Cash and cash equivalents</string>
+    <string name="pie_word_international_equities">International equities</string>
+    <string name="pie_word_international_fixed">International fixed interest</string>
+    <string name="pie_word_nz_equities"></string>
+    <string name="pie_word_nz_fixed">New Zealand fixed interest</string>
+    <string name="pie_word_au_equities">Australasian equities </string>
+    <string name="pie_word_listed_property">Listed roperty</string>
+
+    <string name="investment_object">Investment object and strategy</string>
+    <string name="target_investment_mix">Target investment mix</string>
+    <string name="growth_assets">Growth assets</string>
+    <string name="income_assets">Income assets</string>
+
+    <string name="submit">Submit</string>
+    <string name="submitted">Submitted</string>
+
+    <string name="main_description">The application helps you to find out which type of investor you are.\nUse the menu to access the questions.</string>
+    <string name="submit_message">Your score has been submitted. \nWe will be on contact shortly.</string>
 </resources>

@@ -13,6 +13,13 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppTheme.NoActionBar.FullScreen" parent="@style/Theme.AppCompat.Light">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
@@ -22,6 +29,24 @@
         <item name="android:layout_height">40dp</item>
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:layout_marginTop">16dp</item>
+    </style>
+
+    <!--TEXT VIEWS-->
+    <style name="AppTheme.Widget.TextView" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">@dimen/text_normal</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.Widget.TextView.Header" parent="AppTheme.Widget.TextView">
+        <item name="android:textSize">@dimen/text_header</item>
+    </style>
+
+    <style name="AppTheme.Widget.TextView.Title" parent="AppTheme.Widget.TextView">
+        <item name="android:textSize">@dimen/text_title</item>
+    </style>
+
+    <style name="AppTheme.Widget.TextView.Small" parent="AppTheme.Widget.TextView">
+        <item name="android:textSize">12sp</item>
     </style>
 
 </resources>
