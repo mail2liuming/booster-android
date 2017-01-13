@@ -136,8 +136,9 @@ public class QuestionFragment extends BasicFragment {
                 holder.mOptionCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        QuestionModelManager.getsInstance().setCurOption(finalPos);
-//                        notifyDataSetChanged();
+                        if(isChecked){
+                            QuestionModelManager.getsInstance().setCurOption(finalPos);
+                        }
                         EventBus.getDefault().post(new QuestionCheckedEvent());
                     }
                 });
