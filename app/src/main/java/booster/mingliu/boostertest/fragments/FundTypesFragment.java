@@ -44,6 +44,7 @@ public class FundTypesFragment extends BasicFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_fundtype, container, false);
+        // We show a viewpager here for better user experience that the user could easily browse the types
         setupViewPager(view);
         return view;
     }

@@ -20,6 +20,7 @@ import booster.mingliu.boostertest.R;
 import booster.mingliu.boostertest.basic.BasicActivity;
 import booster.mingliu.boostertest.basic.BasicFragment;
 import booster.mingliu.boostertest.common.utils.FragmentManagerUtil;
+import booster.mingliu.boostertest.common.utils.PreferenceUtils;
 import booster.mingliu.boostertest.events.QuestionCheckedEvent;
 import booster.mingliu.boostertest.models.QuestionModelManager;
 import butterknife.BindView;
@@ -45,6 +46,14 @@ public class QuestionFragment extends BasicFragment {
     }
 
     public QuestionFragment() {
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        //Every time the user start a new round of questionare, reset the submit menu
+        PreferenceUtils.saveInt(getContext(), PreferenceUtils.KEY_SUBMIT_STATUS, QuestionModelManager.SUBMIT_STATUS_NONE);
     }
 
     @Nullable
@@ -57,7 +66,6 @@ public class QuestionFragment extends BasicFragment {
         mQuestionContentTV.setText(QuestionModelManager.getsInstance().getQuestion());
         QuestionAdapter adapter = new QuestionAdapter();
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
-//        llm.set
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         mQuestionList.setLayoutManager(llm);
         mQuestionList.setAdapter(adapter);
@@ -91,6 +99,7 @@ public class QuestionFragment extends BasicFragment {
         mQuestionList.getAdapter().notifyDataSetChanged();
     }
 
+    //Enable the next button if had option
     private void updateNextBtn() {
         int curOption = QuestionModelManager.getsInstance().getCurOption();
         if (curOption >= 0) {
@@ -132,6 +141,7 @@ public class QuestionFragment extends BasicFragment {
                 } else {
                     holder.mOptionCheckBox.setChecked(false);
                 }
+                //closure this data for future use
                 final int finalPos = position;
                 holder.mOptionCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override

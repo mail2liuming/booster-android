@@ -21,6 +21,7 @@ public class BoosterApplication extends Application {
     public void onCreate() {
         super.onCreate();
         sInstance = this;
+        //For special font
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                         .setDefaultFontPath("fonts/CircularStd-Book.ttf")
                         .setFontAttrId(R.attr.fontPath)

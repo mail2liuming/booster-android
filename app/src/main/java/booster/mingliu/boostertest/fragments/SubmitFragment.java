@@ -1,11 +1,13 @@
 package booster.mingliu.boostertest.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -90,15 +92,32 @@ public class SubmitFragment extends BasicFragment {
             mData.setScore(String.valueOf(QuestionModelManager.getsInstance().getScore()));
 
             request();
+            hideKeyboard();
+
+            //TODO for real request
+            resultDone();
         }
 
     }
 
-    private void resultDone() {
-        EventBus.getDefault().post(new SubmitScoreEvent());
-        getFragmentManager().popBackStack();
+    private void hideKeyboard() {
+        try {
+            View view = getActivity().getCurrentFocus();
 
+            if (view != null) {
+                InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void resultDone() {
+        getFragmentManager().popBackStack();
         PreferenceUtils.saveInt(getContext(), PreferenceUtils.KEY_SUBMIT_STATUS, QuestionModelManager.SUBMIT_STATUS_DONE);
+
+        EventBus.getDefault().post(new SubmitScoreEvent());
     }
 
     @Override
@@ -107,14 +126,14 @@ public class SubmitFragment extends BasicFragment {
             @Override
             public void call(String s) {
                 hideLoadingView();
-                resultDone();
+//                resultDone();
             }
         }, new Action1<Throwable>() {
             @Override
             public void call(Throwable throwable) {
                 hideLoadingView();
 //TODO error handle
-                resultDone();
+//                resultDone();
             }
         });
     }

@@ -2,11 +2,11 @@
 
 ## Tasks
 
-### Main Frame: 3hrs
+### Main Frame: 3hrs Done
 * Project structrue: 0.5hr Done
 * Launch Page: 1 hr Done
 * Home Page: 0.5hr Done 
-* Basic UI styles: 1 hr Ongoing
+* Basic UI styles: 1 hr Done
 
 ### Slide Bar: 2hrs Done
 * Slide Menu & Slide bar Page: 1 hr Done
@@ -26,3 +26,5 @@
 + Submit Page: 0.5hr Done
 + Message Page: 0.5hr Done
 + Submit funtion: 0.5hr Done
+
+### Data input: 1 hr Done

@@ -22,6 +22,8 @@ public class LaunchActivity extends BasicActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
 
+
+        //Show launch screen for 2 seconds
         Observable.timer(2, TimeUnit.SECONDS, AndroidSchedulers.mainThread()).subscribe(new Action1<Long>() {
             @Override
             public void call(Long aLong) {

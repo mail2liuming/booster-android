@@ -29,6 +29,9 @@ public class QuestionModelManager {
 
     private List<String[]> mQuestionOptions;
 
+    /**
+     * scores depends on the option the user choose
+     */
     private int[] mScoreMap = {1, 3, 5, 7, 10};
 
 
@@ -47,6 +50,9 @@ public class QuestionModelManager {
         reset();
     }
 
+    /**
+     * load all the data from xml or from rest apis in the future
+     */
     public void load() {
         Resources res = BoosterApplication.get().getResources();
         mQuestions = res.getStringArray(R.array.questions);
@@ -121,6 +127,10 @@ public class QuestionModelManager {
         return mCurQuestionIdx == getQuestionCount();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getCurType() {
         if (mTotalScore <= 12) {
             return 0;
@@ -150,6 +160,9 @@ public class QuestionModelManager {
 
     }
 
+    /**
+     * Every time the user finished the questionare,set the submit menu enable and save the score
+     */
     private void saveIfNeeded() {
         if (isLastQuestionFinished()) {
             Context context = BoosterApplication.get();

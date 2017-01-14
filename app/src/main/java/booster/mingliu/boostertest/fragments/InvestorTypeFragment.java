@@ -104,7 +104,9 @@ public class InvestorTypeFragment extends BasicFragment {
         pieData.setValueTextColors(colors);
 
         mPieChart.setData(pieData);
+        //Disable the rotate of the pie
         mPieChart.setRotationEnabled(false);
+        //Set the label appearance
         mPieChart.setEntryLabelColor(Color.BLACK);
         mPieChart.setEntryLabelTextSize(8f);
         mPieChart.getDescription().setEnabled(false);

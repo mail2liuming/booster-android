@@ -31,6 +31,9 @@ public class FundTypeModelManager {
     private FundTypeModelManager() {
     }
 
+    /**
+     * load the data for pie graph
+     */
     public void load() {
         Context context = BoosterApplication.get();
         Resources res = context.getResources();
