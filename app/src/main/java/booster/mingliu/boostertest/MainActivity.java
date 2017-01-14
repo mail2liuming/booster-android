@@ -70,7 +70,7 @@ public class MainActivity extends BasicActivity
     }
 
     private void updateSubmitMenu(){
-        int status = PreferenceUtils.getInt(this, PreferenceUtils.KEY_SUBMIT_STATUS,QuestionModelManager.SUBMIT_STATUS_DONE);
+        int status = PreferenceUtils.getInt(this, PreferenceUtils.KEY_SUBMIT_STATUS,QuestionModelManager.SUBMIT_STATUS_NONE);
         MenuItem menuItem = mNavigationView.getMenu().findItem(R.id.nav_send);
         if(QuestionModelManager.SUBMIT_STATUS_NONE==status){
             menuItem.setEnabled(false);
